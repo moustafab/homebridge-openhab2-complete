@@ -150,9 +150,10 @@ class Accessory {
     }
 
     getAccessory() {
-        let accessory = new this.API.platformAccessory(this.name, this.uuid_base);
+        const actualUUID = this.API.hap.uuid.generate(this.uuid_base);
+        let accessory = new this.API.platformAccessory(this.name, actualUUID);
         accessory.addService(this._services);
-        accessory.category = this.api.hap.Categories.TELEVISION;
+        return accessory
     }
 }
 
